@@ -13,12 +13,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import sys
 import os
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
-
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -29,8 +26,7 @@ SECRET_KEY = 'in1u_e=(k$cv&-&-i=8#2gc(bsgxwz-a%@5r_9mj%p&n3#*+@^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -43,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'corsheaders',  # 跨域
+    'rest_framework',
+
+    'network.apps.NetworkConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,17 +76,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Qualcomm_project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '',  # 数据库名称
+        'USER': 'postgres',  # 拥有者，这个一般没修改
+        'PASSWORD': '****',  # 密码，自己设定的
+        'HOST': '',  # 默认的就没写
+        'PORT': '',
+
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -107,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -120,7 +123,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -146,7 +148,6 @@ STATIC_URL = '/static/'
 # }
 # SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 # SESSION_CACHE_ALIAS = "session"
-
 
 
 LOGGING = {
@@ -190,12 +191,10 @@ LOGGING = {
     }
 }
 
-
 REST_FRAMEWORK = {
     # 异常处理
     'EXCEPTION_HANDLER': 'Qualcomm_project.utils.exceptions.exception_handler',
 }
-
 
 # CORS
 CORS_ORIGIN_WHITELIST = (
