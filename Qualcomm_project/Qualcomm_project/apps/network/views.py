@@ -16,3 +16,12 @@ class NetworkView(APIView):
     def get(self, requests):
 
         return Response("successful")
+
+    def update(self, requests):
+
+
+
+
+        return Response( )
+
+        pass
