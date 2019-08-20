@@ -84,13 +84,16 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '',  # 数据库名称
+        'NAME': 'fivedash',  # 数据库名称
+        'OPTIONS': {
+                    'options': '-c search_path=site'
+                },
         'USER': 'postgres',  # 拥有者，这个一般没修改
-        'PASSWORD': '****',  # 密码，自己设定的
-        'HOST': '',  # 默认的就没写
-        'PORT': '',
+        'PASSWORD': '123456',  # 密码，自己设定的
+        'HOST': 'localhost',  # 默认的就没写
+        'PORT': '5432',
+    },
 
-    }
 }
 
 # Password validation
